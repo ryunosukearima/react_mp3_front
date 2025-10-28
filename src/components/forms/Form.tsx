@@ -3,13 +3,14 @@ import { FormInput } from "./FormInput "
 import { ConvertButton } from "./ConvertButton"
 import { FormHistory } from "./FormHistory"
 import { ResetButton } from "./ResetButton"
+import { FormHistoryDelete } from "./FormHistoryDelete"
 
 export const Form = () => {
     const [youtubeLink, setYoutubeLink] = useState("")
     const [title, setTitle] = useState("")
     const [artist, setArtist] = useState("")
     const [comment, setComment] = useState("")
-    const [allName, setAllName] = useState<{ id: number; text: string; }[]>([]);
+    const [formText, setFormText] = useState<{ id: number; text: string; }[]>([]);
     
 
     return (
@@ -41,17 +42,20 @@ export const Form = () => {
         setTitle={setTitle}
         artist={artist}
         comment={comment}
-        allName={allName}
-        setAllName={setAllName}
-        />
-        <FormHistory
-        allName={allName}
+        formText={formText}
+        setFormText={setFormText}
         />
         <ResetButton
         setYoutubeLink={setYoutubeLink}
         setTitle={setTitle}
         setArtist={setArtist}
         setComment={setComment}
+        />
+        <FormHistory
+        formText={formText}
+        setFormText={setFormText}
+        />
+        <FormHistoryDelete 
         />
         </div>
     )
