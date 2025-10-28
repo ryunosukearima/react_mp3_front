@@ -53,7 +53,6 @@ export const Form = () => {
         />
         <FormHistory
         formText={formText}
-        setFormText={setFormText}
         />
         <FormHistoryDelete 
         />

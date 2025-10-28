@@ -1,33 +1,28 @@
-import { useEffect } from "react";  
+import { useEffect, useState } from "react";  
 
 type formInputProps = {
     formText: { id: number; text: string }[];
-    setFormText: React.Dispatch<React.SetStateAction<{ id: number; text: string }[]>>    
 }
 
+export const FormHistory = ({ formText }: formInputProps) => {
+    const [displayFormText, setDisplayFormText] = useState(formText)
 
+    useEffect (() => {
+        if (formText.length == 0) return;
 
-export const FormHistory = ({ formText, setFormText }: formInputProps) => {
-    useEffect(
-        () => {
-            if (formText.length == 0) return
+        const textRevers = [...formText].reverse();
+        const latestFour = textRevers.slice(0, 4);
+        setDisplayFormText(latestFour);
+    }, [formText])
 
-            const additionHistory = formText[formText.length -1]
-
-            const formDelete = setTimeout(() => {
-                if (formText.length > 2) {
-                    setFormText((prev) => prev.filter((item) => item.id !== additionHistory.id))
-                }
-            }, 2000)
-
-            return () => clearTimeout(formDelete)
-        }, [ formText.length ]
-    )
-
+    const displayFormTextDelete = () => {
+        setDisplayFormText([])
+    }
 
     return (
         <div>
-            {formText.map((item) => (
+            <button onClick={displayFormTextDelete}>履歴削除</button>
+            {displayFormText.map((item) => (
                 <pre key={item.id}>{item.text}</pre>
             ))}
         </div>
