@@ -1,9 +1,8 @@
 import { use, useRef, useState } from "react" 
 import { FormInput } from "./FormInput "
 import { ConvertButton } from "./ConvertButton"
-import { FormHistory } from "./FormHistory"
+import { FormHistory } from "./FormHistory/FormHistory"
 import { ResetButton } from "./ResetButton"
-import { FormHistoryDelete } from "./FormHistoryDelete"
 
 export const Form = () => {
     const [youtubeLink, setYoutubeLink] = useState("")
@@ -54,10 +53,6 @@ export const Form = () => {
         <FormHistory
         formText={formText}
         />
-        <FormHistoryDelete 
-        />
         </div>
     )
 }
-// 履歴整える
-// 配列、時間経過で削除削除
